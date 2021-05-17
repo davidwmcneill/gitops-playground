@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: playground-project
+  namespace: argocd
+spec:
+  description: playground project
+  sourceRepos:
+  - 'https://github.com/helm/charts.git'
+  - 'https://github.com/argoproj/argocd-example-apps.git'
+  destinations:
+  - namespace: '*'
+    server: https://kubernetes.default.svc
+
+  clusterResourceWhitelist:
+  - group: '*'
+    kind: '*'

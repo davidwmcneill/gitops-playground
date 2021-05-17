@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: app-of-apps
+  namespace: argocd
+spec:
+  destination:
+    namespace: argocd
+    server: 'https://kubernetes.default.svc'
+  project: playground-project
+  source:
+    path: apps
+    repoURL: 'https://github.com/argoproj/argocd-example-apps.git'
+    targetRevision: master
+    helm:
+      valueFiles:
+      - values.yaml
