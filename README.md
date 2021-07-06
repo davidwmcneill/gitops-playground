@@ -6,7 +6,7 @@ A quick start K3d setup bundled with Argocd
 ----
 
 ## Why?
-- A easy way to have Argocd up and running locally for testing new features/releases
+- An easy way to have Argocd up and running locally for testing new features/releases
 - Gitops for home lab projects
 - Minimal Prerequisites 
 

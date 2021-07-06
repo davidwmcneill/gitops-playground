@@ -8,6 +8,7 @@ spec:
   sourceRepos:
   - 'https://github.com/helm/charts.git'
   - 'https://github.com/argoproj/argocd-example-apps.git'
+  - 'https://github.com/davidwmcneill/gitops-playground-apps.git'
   destinations:
   - namespace: '*'
     server: https://kubernetes.default.svc

@@ -14,6 +14,16 @@ verifySupported() {
   fi
 }
 
+## check if docker is running
+checkDocker(){
+  {
+    docker ps -q
+  } || {
+    echo "Docker is not running. Please start docker on your computer"
+    echo "When docker has finished starting up press [ENTER} to continue"
+    read
+  }
+}
 
 installK3d() {
   if type "curl" > /dev/null; then
@@ -51,10 +61,17 @@ createArgocdResources(){
   kubectl apply -f ./manifests/argocd-resources
 }
 
+startupComplete(){
+    open http://localhost:8080/argocd
+    echo "Username: admin / Password: letmein"
+}
+
 verifySupported
+checkDocker
 installK3d
 createCluster
 waitForReady kube-system deployment/traefik
 createArgocd
 waitForReady argocd deployment/argo-argocd-server
 createArgocdResources
+startupComplete
