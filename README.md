@@ -24,7 +24,14 @@ This will wrap the install script for k3d located here: [k3d install script](htt
 **Note:** This will update kubeconfig context 
 
 ----
-### Full bootstrap
+### What is in the bootsrap
+The bootstrap makes a few changes from the default k3d installation:
+
+- Replace Traefik v1 with Ingress-Nginx
+- Replace the default network (Flannel) with Calico to support Network policies
+
+----
+### Run full bootstrap
 ```
 CREATE_CLUSTER=true ./bootstrap.sh 
 ```
@@ -35,7 +42,7 @@ Argocd is installed as part of the cluster bootstrap using klipper-helm from ins
 
 ----
 ### Argocd Login
-The Argocd url is presented via Traefik on the path /argocd: http://localhost:8080/argocd
+The Argocd url is presented via ingress on the path /argocd: http://localhost:8080/argocd
 
 Login details:
 ```
@@ -46,10 +53,17 @@ Password: letmein
 ----
 ## K3d Options
 
-
 ### View cluster
 ```
 k3d cluster list
+```
+### Stop cluster
+```
+k3d cluster stop playground
+```
+### Start cluster
+```
+k3d cluster start playground
 ```
 
 ----

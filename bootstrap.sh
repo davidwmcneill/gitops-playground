@@ -25,6 +25,11 @@ checkDocker(){
   }
 }
 
+## copy calico manifest to tmp as an absolute path is required
+calicoManifest(){
+  cp manifests/calico/calico.yaml /tmp/calico.yaml
+}
+
 installK3d() {
   if type "curl" > /dev/null; then
     curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v4.0.0 bash
@@ -39,7 +44,7 @@ createCluster() {
   fi
 }
 
-waitForReady() {
+waitForReadyDeployment() {
   local namespace=$1
   local deployment=$2
   until kubectl -n $namespace wait --for=condition=available --timeout=120s $deployment &> /dev/null;
@@ -50,10 +55,22 @@ waitForReady() {
   echo "$deployment running."
 }
 
+waitForReadyRollout() {
+  local namespace=$1
+  local daemonset=$2
+  until kubectl rollout status -n $namespace $daemonset &> /dev/null;
+  do
+      echo "Waiting for $daemonset ..."
+      sleep 1
+  done
+  echo "$daemonset running."
+}
+
+
 createArgocd(){
   kubectl create namespace argocd
   kubectl create serviceaccount helm-argocd -n argocd
-  kubectl apply -f ./manifests
+  kubectl apply -f ./manifests/argocd
   kubectl replace --force -f ./manifests/job/argocd-job.yaml
 }
 
@@ -62,16 +79,20 @@ createArgocdResources(){
 }
 
 startupComplete(){
+    echo "Almost ready..."
+    sleep 20 #Just allow time for the ingress to fully come online
+    echo "Complete!"
     open http://localhost:8080/argocd
     echo "Username: admin / Password: letmein"
 }
 
 verifySupported
 checkDocker
+calicoManifest
 installK3d
 createCluster
 createArgocd
-waitForReady argocd deployment/argo-argocd-server
+waitForReadyDeployment argocd deployment/argo-argocd-server
 createArgocdResources
-waitForReady ingress daemonsets/svclb-ingress-nginx-controller
+waitForReadyRollout ingress daemonsets/svclb-ingress-nginx-controller
 startupComplete

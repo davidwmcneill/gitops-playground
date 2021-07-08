@@ -1,6 +1,7 @@
 apiVersion: k3d.io/v1alpha2
 kind: Simple
 # https://k3d.io/usage/configfile/#all-options-example
+# https://github.com/rancher/k3d/blob/main/docs/usage/commands.md
 
 name: playground
 servers: 1
@@ -16,7 +17,11 @@ ports:
     nodeFilters:
       - loadbalancer
 
+volumes:
+  - volume: "/tmp/calico.yaml:/var/lib/rancher/k3s/server/manifests/calico.yaml"
+
 options:
   k3s:
     extraServerArgs: 
-      - --no-deploy=traefik
+      - --no-deploy=traefik     # Using ingress-nginx instead
+      - --flannel-backend=none  # Using Calico to support network policies 
