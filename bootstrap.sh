@@ -70,8 +70,8 @@ verifySupported
 checkDocker
 installK3d
 createCluster
-waitForReady kube-system deployment/traefik
 createArgocd
 waitForReady argocd deployment/argo-argocd-server
 createArgocdResources
+waitForReady ingress daemonsets/svclb-ingress-nginx-controller
 startupComplete

@@ -15,3 +15,8 @@ ports:
   - port: 8080:80 # same as `--port '8080:80@loadbalancer'`
     nodeFilters:
       - loadbalancer
+
+options:
+  k3s:
+    extraServerArgs: 
+      - --no-deploy=traefik
