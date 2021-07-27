@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+
 echo $BASH_VERSION
 
 : ${CREATE_CLUSTER:="false"}
