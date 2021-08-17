@@ -5,7 +5,7 @@ kind: Simple
 
 name: playground
 servers: 1
-agents: 2
+agents: 3
 
 kubeAPI: # same as `--api-port myhost.my.domain:6445` (where the name would resolve to 127.0.0.1)
   host: "localhost" # important for the `server` setting in the kubeconfig
@@ -25,3 +25,8 @@ options:
     extraServerArgs: 
       - --no-deploy=traefik     # Using ingress-nginx instead
       - --flannel-backend=none  # Using Calico to support network policies 
+    extraAgentArgs: # addditional arguments passed to the `k3s agent` command; same as `--k3s-agent-arg`
+    # encountered issues with disk pressure - https://github.com/rancher/k3d/issues/133
+    # https://k3d.io/faq/faq/#pods-evicted-due-to-lack-of-disk-space
+      - --kubelet-arg=eviction-hard=imagefs.available<1%,nodefs.available<1%
+      - --kubelet-arg=eviction-minimum-reclaim=imagefs.available=1%,nodefs.available=1%

@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-startup:
+create:
 	CREATE_CLUSTER=true ./bootstrap.sh 
 
 stop:
