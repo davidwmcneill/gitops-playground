@@ -29,7 +29,7 @@ checkDocker(){
 
 ## copy calico manifest to tmp as an absolute path is required
 calicoManifest(){
-  cp manifests/calico/calico.yaml /tmp/calico.yaml
+  mkdir -p /tmp/calico && cp manifests/calico/calico.yaml /tmp/calico
 }
 
 installK3d() {

@@ -7,7 +7,7 @@ stop:
 	k3d cluster stop playground
 
 start:
-	cp manifests/calico/calico.yaml /tmp/calico.yaml
+	cp manifests/calico/calico.yaml /tmp/calico/calico.yaml
 	k3d cluster start playground
 
 destroy:

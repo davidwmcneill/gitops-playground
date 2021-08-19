@@ -18,7 +18,7 @@ ports:
       - loadbalancer
 
 volumes:
-  - volume: "/tmp/calico.yaml:/var/lib/rancher/k3s/server/manifests/calico.yaml"
+  - volume: "/tmp/calico/:/var/lib/rancher/k3s/server/manifests/"
 
 options:
   k3s:
