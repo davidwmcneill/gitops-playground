@@ -13,8 +13,8 @@ A quick start K3d setup bundled with Argocd
 ----
 ## Requirements
 
-- docker
-- kubectl
+- docker - https://docs.docker.com/get-docker/
+- kubectl - https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
 - curl/wget
 
 ----
