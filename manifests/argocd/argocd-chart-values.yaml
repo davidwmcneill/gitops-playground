@@ -5,9 +5,9 @@ metadata:
   namespace: argocd
 data:
   values-01_HelmChart.yaml: |-
-    global:
-      image:
-        tag: v2.0.0
+    # global:
+    #   image:
+    #     tag: v2.0.0
 
     configs:
       secret:

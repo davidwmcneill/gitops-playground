@@ -34,9 +34,9 @@ calicoManifest(){
 
 installK3d() {
   if type "curl" > /dev/null; then
-    curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v4.0.0 bash
+    curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v5.2.2 bash
   elif type "wget" > /dev/null; then
-    wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v4.0.0 bash
+    wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v5.2.2 bash
   fi
 }
 

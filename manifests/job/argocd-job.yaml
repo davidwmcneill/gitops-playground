@@ -18,7 +18,8 @@ spec:
         env:
         - name: NAME
           value: argo
-        - name: VERSION
+        # - name: VERSION
+        #   value: 3.31.0
         - name: REPO
           value: https://argoproj.github.io/argo-helm
         # - name: HELM_DRIVER
@@ -28,7 +29,7 @@ spec:
         - name: CHART
           value: argo/argo-cd
         - name: HELM_VERSION
-        image: rancher/klipper-helm:v0.3.2
+        image: rancher/klipper-helm:v0.4.3
         imagePullPolicy: IfNotPresent
         name: helm
         resources: {}
