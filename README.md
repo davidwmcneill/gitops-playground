@@ -1,11 +1,17 @@
 # Gitops-playground
 
 ----
-A quick start K3d setup bundled with Argocd
+A quick start K3d setup bootstrapped with Argocd
 
 ----
 
-## Why?
+## The challenges of local software development 
+- Lead time to setup a working local environment 
+- Drift of config and setup standards over time between each developers environment 
+- Not representative of the final production environment  
+
+
+## Why k3d?
 - An easy way to have Argocd up and running locally for testing new features/releases
 - Gitops for home lab projects
 - Minimal Prerequisites 
