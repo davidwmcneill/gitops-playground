@@ -19,6 +19,7 @@ ports:
 
 volumes:
   - volume: "/tmp/calico/:/var/lib/rancher/k3s/server/manifests/"
+  # - volume: "/Users/dmc/git/k3dvolume:/tmp/k3dvolume" # For local development live code mounts
 
 options:
   k3s:

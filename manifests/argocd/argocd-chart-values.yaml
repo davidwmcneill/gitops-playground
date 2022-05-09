@@ -5,6 +5,7 @@ metadata:
   namespace: argocd
 data:
   values-01_HelmChart.yaml: |-
+    # https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml
     # global:
     #   image:
     #     tag: v2.0.0
@@ -23,6 +24,7 @@ data:
         enabled: true
         annotations:
           ingress.kubernetes.io/ssl-redirect: "false"
+          kubernetes.io/ingress.class: "nginx"
         labels: {}
         ingressClassName: ""
         paths:

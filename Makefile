@@ -1,4 +1,5 @@
 SHELL := /bin/bash
+export LOCAL_DEV_PATH=/Users/dmc/git/k3dvolume
 
 create:
 	CREATE_CLUSTER=true ./bootstrap.sh 

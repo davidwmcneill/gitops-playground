@@ -34,15 +34,15 @@ calicoManifest(){
 
 installK3d() {
   if type "curl" > /dev/null; then
-    curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v5.2.2 bash
+    curl -s https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v5.3.0 bash
   elif type "wget" > /dev/null; then
-    wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v5.2.2 bash
+    wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | TAG=v5.3.0 bash
   fi
 }
 
 createCluster() {
   if [ $CREATE_CLUSTER = "true" ]; then
-    k3d cluster create --config k3d-config.yml 
+    k3d cluster create --config k3d-config.yml --volume "$LOCAL_DEV_PATH:/tmp/k3dvolume"
   fi
 }
 
