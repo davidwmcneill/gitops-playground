@@ -6,9 +6,9 @@ metadata:
 data:
   values-01_HelmChart.yaml: |-
     # https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml
-    # global:
-    #   image:
-    #     tag: v2.0.0
+    global:
+      image:
+        tag: v2.10.7
 
     configs:
       secret:
