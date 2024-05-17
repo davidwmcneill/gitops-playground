@@ -8,7 +8,7 @@ data:
     # https://github.com/argoproj/argo-helm/blob/master/charts/argo-cd/values.yaml
     # global:
     #   image:
-    #     tag: v2.0.0
+    #     tag: v2.10.7
 
     configs:
       secret:
