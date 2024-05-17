@@ -1,9 +1,10 @@
-apiVersion: k3d.io/v1alpha2
+apiVersion: k3d.io/v1alpha5
 kind: Simple
-# https://k3d.io/usage/configfile/#all-options-example
+# https://k3d.io/v5.6.3/usage/configfile/#config-options
 # https://github.com/rancher/k3d/blob/main/docs/usage/commands.md
 
-name: playground
+metadata:
+  name: playground
 servers: 1
 agents: 3
 
@@ -23,11 +24,18 @@ volumes:
 
 options:
   k3s:
-    extraServerArgs: 
-      - --no-deploy=traefik     # Using ingress-nginx instead
-      - --flannel-backend=none  # Using Calico to support network policies 
-    extraAgentArgs: # addditional arguments passed to the `k3s agent` command; same as `--k3s-agent-arg`
-    # encountered issues with disk pressure - https://github.com/rancher/k3d/issues/133
-    # https://k3d.io/faq/faq/#pods-evicted-due-to-lack-of-disk-space
-      - --kubelet-arg=eviction-hard=imagefs.available<1%,nodefs.available<1%
-      - --kubelet-arg=eviction-minimum-reclaim=imagefs.available=1%,nodefs.available=1%
+    extraArgs: 
+      - arg: '--disable=traefik'     # Using ingress-nginx instead
+        nodeFilters:
+          - server:0
+      - arg: '--flannel-backend=none' # Using Calico to support network policies 
+        nodeFilters:
+          - server:*
+      - arg: '--disable-network-policy'
+        nodeFilters:
+          - server:*
+    # extraAgentArgs: # addditional arguments passed to the `k3s agent` command; same as `--k3s-agent-arg`
+    # # encountered issues with disk pressure - https://github.com/rancher/k3d/issues/133
+    # # https://k3d.io/faq/faq/#pods-evicted-due-to-lack-of-disk-space
+    #   - --kubelet-arg=eviction-hard=imagefs.available<1%,nodefs.available<1%
+    #   - --kubelet-arg=eviction-minimum-reclaim=imagefs.available=1%,nodefs.available=1%

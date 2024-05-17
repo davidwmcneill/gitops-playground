@@ -42,7 +42,7 @@ installK3d() {
 
 createCluster() {
   if [ $CREATE_CLUSTER = "true" ]; then
-    k3d cluster create --config k3d-config.yml --volume "$LOCAL_DEV_PATH:/tmp/k3dvolume"
+    k3d cluster create --config k3d-config.yml
   fi
 }
 
