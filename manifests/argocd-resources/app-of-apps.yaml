@@ -11,7 +11,7 @@ spec:
   source:
     path: argocd
     repoURL: 'https://github.com/davidwmcneill/gitops-playground-apps.git'
-    targetRevision: task/stable-version-update
+    targetRevision: local
     helm:
       valueFiles:
       - local.yaml
