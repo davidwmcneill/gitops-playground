@@ -81,4 +81,11 @@ k3d cluster start playground
 k3d cluster delete playground
 ```
 
+# Troubleshooting
 
+To access the Argo login page the app of apps deployment must successfully complete the Prometheus and Nginx-ingress sync.
+In the event of issues sync issues, use the port-forward option to access the Argo web interface to debug: 
+
+```
+kubectl -n argocd port-forward svc/argo-argocd-server 8080:80
+```
