@@ -15,6 +15,11 @@ data:
         argocdServerAdminPassword: $2y$10$tn.V.mXG.rbdJarpxb7weOwD0fLi5zpOgTooVzZzrjBQfi1iVS5i.
         argocdServerAdminPasswordMtime: "2021-03-17T00:15:00Z"
 
+    global:
+      # -- Default domain used by all components
+      ## Used for ingresses, certificates, SSO, notifications, etc.
+      domain: localhost
+
     server:
       extraArgs:
         - --insecure
