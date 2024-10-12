@@ -18,8 +18,8 @@ ports:
     nodeFilters:
       - loadbalancer
 
-volumes:
-  - volume: "/tmp/calico/:/var/lib/rancher/k3s/server/manifests/"
+# volumes:
+  # - volume: "/tmp/calico/:/var/lib/rancher/k3s/server/manifests/"
   # - volume: "/Users/dmc/git/k3dvolume:/tmp/k3dvolume" # For local development live code mounts
 
 options:
@@ -28,12 +28,12 @@ options:
       - arg: '--disable=traefik'     # Using ingress-nginx instead
         nodeFilters:
           - server:0
-      - arg: '--flannel-backend=none' # Using Calico to support network policies 
-        nodeFilters:
-          - server:*
-      - arg: '--disable-network-policy'
-        nodeFilters:
-          - server:*
+      # - arg: '--flannel-backend=none' # Using Calico to support network policies 
+      #   nodeFilters:
+      #     - server:*
+      # - arg: '--disable-network-policy'
+      #   nodeFilters:
+      #     - server:*
     # extraAgentArgs: # addditional arguments passed to the `k3s agent` command; same as `--k3s-agent-arg`
     # # encountered issues with disk pressure - https://github.com/rancher/k3d/issues/133
     # # https://k3d.io/faq/faq/#pods-evicted-due-to-lack-of-disk-space

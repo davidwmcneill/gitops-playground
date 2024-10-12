@@ -28,9 +28,9 @@ checkDocker(){
 }
 
 ## copy calico manifest to tmp as an absolute path is required
-calicoManifest(){
-  mkdir -p /tmp/calico && cp manifests/calico/calico.yaml /tmp/calico
-}
+# calicoManifest(){
+#   mkdir -p /tmp/calico && cp manifests/calico/calico.yaml /tmp/calico
+# }
 
 installK3d() {
   if type "curl" > /dev/null; then
@@ -90,7 +90,7 @@ startupComplete(){
 
 verifySupported
 checkDocker
-calicoManifest
+# calicoManifest
 installK3d
 createCluster
 createArgocd
