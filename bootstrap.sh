@@ -96,5 +96,5 @@ createCluster
 createArgocd
 waitForReadyDeployment argocd deployment/argo-argocd-server
 createArgocdResources
-waitForReadyRollout ingress daemonsets/svclb-ingress-nginx-controller
+waitForReadyRollout ingress deployment/ingress-nginx-controller
 startupComplete
